@@ -94,9 +94,9 @@ Inside `index.js` we require each of the other files and export it as one object
 ```javascript
 // models/index.js
 var mongoose = require("mongoose");
+// the mongoose.connect line will only happen once in your code for each project
 mongoose.connect("mongodb://localhost/book-app");   
-// the mongoose.connect line above  needs to happen exactly once in your code
-    // move it from book.js to index.js  :)
+
 
 module.exports.Gargoyle = require("./gargoyle.js");
 module.exports.Goblin = require("./goblin.js");
