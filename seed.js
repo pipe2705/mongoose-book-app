@@ -55,7 +55,7 @@ var books_list = [
 ];
 
 // remove all records that match {} -- which means remove ALL records
-db.Book.remove({}, function(err, books){
+db.Book.deleteMany({}, function(err, books){
   if(err) {
     console.log('Error occurred in remove', err);
   } else {
