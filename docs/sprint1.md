@@ -79,7 +79,7 @@ First off let's setup mongo and mongoose.
 
 3. Now if someone were to `require('./models')` they'd gain access to this book database model.
 
-Here's a module example:
+Here's a module example to demonstrate this (you *will not* need to modify your code again until the next step):
 
 
       ├── models
