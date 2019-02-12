@@ -79,14 +79,14 @@ First off let's setup mongo and mongoose.
 
 3. Now if someone were to `require('./models')` they'd gain access to this book database model.
 
-Here's a module example to demonstrate this (you *will not* need to modify your code again until the next step):
+Let's see what this could look like with more models involved. Don't add these extra modules Here's a module example to demonstrate this:
 
 
       ├── models
       │   ├── index.js
-      │   ├── gargoyle.js
-      │   ├── gnome.js
-      │   ├── goblin.js
+      │   ├── book.js
+      │   ├── author.js
+      │   ├── publisher.js
 
 
 Inside `index.js` we require each of the other files and export it as one object:
@@ -97,14 +97,15 @@ var mongoose = require("mongoose");
 // the mongoose.connect line will only happen once in your code for each project
 mongoose.connect("mongodb://localhost/book-app");   
 
-
-module.exports.Gargoyle = require("./gargoyle.js");
-module.exports.Goblin = require("./goblin.js");
-module.exports.Gnome = require("./gnome.js");
+module.exports = {
+  Book: require('./book.js'),
+  Author: require('./author.js'),
+  Publisher: require('./publisher.js')
+};
 ```
 
 In the end this means that when you require `./models` in `server.js` you get back an object like
-        `{ Gargoyle: Model, Goblin: Model, Gnome: Model }`
+        `{ Book: Model, Author: Model, Publisher: Model }`
 
 
 
