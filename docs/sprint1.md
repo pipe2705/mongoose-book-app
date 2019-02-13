@@ -139,12 +139,14 @@ In the end this means that when you require `./models` in `server.js` you get ba
 3. You can use the Mongo shell to check what's now in your database, or start interacting with it through the server files.  If you got an error message above, FIX IT BEFORE YOU MOVE ON.  If you're stuck, ask for help.
 
 <details>
-  <summary>Getting deprecation warnings while running `node seed.js`? Expand this to learn why and fix them</summary>
+  <summary>Getting deprecation warnings while running our seed file?</summary>
 
-  When running `node seed.js` you may see a deprecation warnings in your terminal. They might look something like this:
+  When running our seed file you may see a deprecation warnings in your terminal. They might look something like this:
   
   ```bash
-    (node:51637) DeprecationWarning: current URL string parser is deprecated, and will be removed in a future version. To use the new parser, pass option { useNewUrlParser: true } to MongoClient.connect.
+    (node:51637) DeprecationWarning: current URL string parser is deprecated, 
+    and will be removed in a future version. To use the new parser, pass option 
+    { useNewUrlParser: true } to MongoClient.connect.
   ```
 
   These look and sound a lot like errors but they're not really that scary. A warning isn't going to stop our code from functioning but it's probably a good idea to take a look at what it says and fix it some time in the future. Strictly speaking, a 'DeprecationWarning' is here to let us know of some aspect of our code that is going to be removed in a future version of some technology we're working with. In this case the warning pertains to a URL Parser in Mongoose. Here's how we fix the warning in the example above:
