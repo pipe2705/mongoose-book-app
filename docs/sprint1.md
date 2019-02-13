@@ -140,7 +140,7 @@ In the end this means that when you require `./models` in `server.js` you get ba
 
 <details>
   <summary>Getting deprecation warnings while running our seed file?</summary>
-
+  <br>
   When running our seed file you may see a deprecation warnings in your terminal. They might look something like this:
   
   ```bash
