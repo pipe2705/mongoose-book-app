@@ -89,7 +89,7 @@ Referencing authors is a good choice here because:
 <!-- Then add a call to `db.Author.remove` to delete all the old authors, and inside it add a call to `db.Author.create` to create new authors. -->
 
   ```js
-    var authors_list = [
+    const authors_list = [
       {
         name: "Harper Lee",
         alive: false
@@ -145,7 +145,7 @@ Referencing authors is a good choice here because:
           db.Book.deleteMany({}, function(err, books){
             console.log('removed all books');
             books_list.forEach(function (bookData) {
-              var book = new db.Book({
+              const book = new db.Book({
                 title: bookData.title,
                 image: bookData.image,
                 releaseDate: bookData.releaseDate
