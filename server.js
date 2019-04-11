@@ -50,7 +50,7 @@ const books = [
 ];
 
 
-const newBookUUID = 18;
+let newBookUUID = 18;
 
 
 
