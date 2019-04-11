@@ -1,9 +1,9 @@
 // This file allows us to seed our application with data
 // simply run: `node seed.js` from the root of this project folder.
 
-var db = require('./models');
+const db = require('./models');
 
-var books_list = [
+const books_list = [
   {
     title: "To Kill a Mockingbird",
     author: "Harper Lee",
