@@ -41,10 +41,10 @@ First off let's setup mongo and mongoose.
 
   ```js
   // book.js
-  var mongoose = require('mongoose');
-  var Schema = mongoose.Schema;
+  const mongoose = require('mongoose');
+  const Schema = mongoose.Schema;
 
-  var BookSchema = new Schema({
+  const BookSchema = new Schema({
        title: String,
       // you should fill the rest of this in
    });
@@ -53,13 +53,13 @@ First off let's setup mongo and mongoose.
 4. Next let's create the `Book` model from the schema.  
   ```js
   // book.js
-  var Book = mongoose.model('Book', BookSchema);
+  const Book = mongoose.model('Book', BookSchema);
   ```
 
 5. Finally we'll need to export Book from this **module** (that's this file).  You can export it at the very end of the file by doing:
   ```js
   // book.js
-  var Book = mongoose.model('Book', BookSchema);
+  const Book = mongoose.model('Book', BookSchema);
 
   module.exports = Book;
   ```
@@ -95,7 +95,7 @@ Inside `index.js` we require each of the other files and export it as one object
 // models/index.js
 var mongoose = require("mongoose");
 // the mongoose.connect line will only happen once in your code for each project
-mongoose.connect("mongodb://localhost/book-app");   
+mongoose.connect("mongodb://localhost:27017/book-app");   
 
 module.exports = {
   Book: require('./book.js'),
@@ -122,16 +122,16 @@ In the end this means that when you require `./models` in `server.js` you get ba
 
   ```js
   // entire book.js so far
-  var mongoose = require('mongoose');
+  const mongoose = require('mongoose');
 
-  var BookSchema = new mongoose.Schema({
+  const BookSchema = new mongoose.Schema({
     title: String,
     author: String,
     image: String,
     release_date: String
   });
 
-  var Book = mongoose.model('Book', BookSchema);
+  const Book = mongoose.model('Book', BookSchema);
 
   module.exports = Book;
   ```
@@ -152,7 +152,7 @@ In the end this means that when you require `./models` in `server.js` you get ba
   These look and sound a lot like errors but they're not really that scary. A warning isn't going to stop our code from functioning but it's probably a good idea to take a look at what it says and fix it some time in the future. Strictly speaking, a 'DeprecationWarning' is here to let us know of some aspect of our code that is going to be removed in a future version of some technology we're working with. In this case the warning pertains to a URL Parser in Mongoose. Here's how we fix the warning in the example above:
 
 ```bash
-  mongoose.connect("mongodb://localhost/book-app", { useNewUrlParser: true });
+  mongoose.connect("mongodb://localhost:27017/book-app", { useNewUrlParser: true });
 ```
 
   Fixes for other warnings will look similar to the above.
@@ -165,7 +165,7 @@ Next we'll start to use our new model in `server.js`.
 
 1. Open `server.js`.  
 
-2. Add the correct `require` statement to `server.js` to import your models module:  `var db = require('./models')`.  This should go near the top as part of the "SETUP and CONFIGURATION".
+2. Add the correct `require` statement to `server.js` to import your models module:  `const db = require('./models')`.  This should go near the top as part of the "SETUP and CONFIGURATION".
 
 3. Delete the hard-coded books array.  We'll start to replace each route with the correct code to use the database instead.  From now on, when we want to get to a book, we'll use mongoose methods and access `db.Books`.
 
