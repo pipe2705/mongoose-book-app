@@ -16,13 +16,13 @@ Characters, however, are usually pretty unique to the book that they're in, so w
 
 ## 2. Creating the CharacterSchema
 
-Since Characters will be embedded we can create it's schema either in its own file or in the same file as the document it will be embedded in.  Let's keep it simple this time; and create it in the the `models/book.js`.  
+Since Characters will be embedded we can create it's schema either in its own file or in the same file as the document it will be embedded in.  Let's keep it simple this time; and create it in the the `models/Book.js`.  
 
-1. Add the CharacterSchema to `models/book.js` with one `name` attribute (keeping it simple for now).
+1. Add the CharacterSchema to `models/Book.js` with one `name` attribute (keeping it simple for now).
 
   ```js
-  // models/book.js
-  var CharacterSchema = new Schema({
+  // models/Book.js
+  const CharacterSchema = new Schema({
     name: String
   });
   ```
@@ -64,7 +64,7 @@ We don't need all of these today; in fact we're only really going to worry about
 1. Add a new route to server.js:
 
   ```js
-  app.post('/api/books/:book_id/characters', function (req, res)
+  app.post('/api/books/:book_id/characters',  (req, res) => {});
   ```
 
 
@@ -74,12 +74,12 @@ We don't need all of these today; in fact we're only really going to worry about
 
   ```js
   // Create a character associated with a book
-  app.post('/api/books/:book_id/characters', function (req, res) {
+  app.post('/api/books/:book_id/characters', (req, res) => {
     // Get book id from url params (`req.params`)
-    var bookId = req.params.book_id;
+    const bookId = req.params.book_id;
     db.Book.findById(bookId)
       .populate('author')
-      .exec(function(err, foundBook) {
+      .exec((err, foundBook) => {
         // handle errors
         // push req.body into characters array
 
@@ -97,13 +97,13 @@ We don't need all of these today; in fact we're only really going to worry about
   
   ```js
      // Create a character associated with a book
-     app.post('/api/books/:book_id/characters', function (req, res) {
+     app.post('/api/books/:book_id/characters', (req, res)=> {
        // Get book id from url params (`req.params`)
-       var bookId = req.params.book_id;
+       const bookId = req.params.book_id;
        db.Book.findById(bookId)
          .populate('author') // Reference to author
          // now we can worry about saving that character
-         .exec(function(err, foundBook) {
+         .exec((err, foundBook) => {
            console.log(foundBook);
            if (err) {
              res.status(500).json({error: err.message});
