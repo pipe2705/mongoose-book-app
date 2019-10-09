@@ -29,7 +29,7 @@ Let's replace that array with a database.  We'll create a booksSchema and Books 
 First off let's setup mongo and mongoose.  
 
 1. Install mongoose into this repo's package.json: `npm install --save mongoose`
-2. Create a new file `models/book.js`. We'll create a schema and model for books in this file!
+2. Create a new file `models/Book.js`. We'll create a schema and model for books in this file!
 
 3. Our books will have the following attributes:
   * title
@@ -40,7 +40,7 @@ First off let's setup mongo and mongoose.
   Let's create a schema using these properties.  I'll get you started:
 
   ```js
-  // book.js
+  // Book.js
   const mongoose = require('mongoose');
   const Schema = mongoose.Schema;
 
@@ -52,13 +52,13 @@ First off let's setup mongo and mongoose.
 
 4. Next let's create the `Book` model from the schema.  
   ```js
-  // book.js
+  // Book.js
   const Book = mongoose.model('Book', BookSchema);
   ```
 
 5. Finally we'll need to export Book from this **module** (that's this file).  You can export it at the very end of the file by doing:
   ```js
-  // book.js
+  // Book.js
   const Book = mongoose.model('Book', BookSchema);
 
   module.exports = Book;
@@ -74,7 +74,7 @@ First off let's setup mongo and mongoose.
 
   ```js
   // models/index.js
-  module.exports.Book = require("./book.js");
+  module.exports.Book = require("./Book.js");
   ```
 
 3. Now if someone were to `require('./models')` they'd gain access to this book database model.
@@ -84,9 +84,9 @@ Let's see what this could look like with more models involved. Don't add these e
 
       ├── models
       │   ├── index.js
-      │   ├── book.js
-      │   ├── author.js
-      │   ├── publisher.js
+      │   ├── Book.js
+      │   ├── Author.js
+      │   ├── Publisher.js
 
 
 Inside `index.js` we require each of the other files and export it as one object:
@@ -95,9 +95,9 @@ Inside `index.js` we require each of the other files and export it as one object
 // models/index.js
 // at the end of the file add..
 module.exports = {
-  Book: require('./book.js'),
-  Author: require('./author.js'),
-  Publisher: require('./publisher.js')
+  Book: require('./Book.js'),
+  Author: require('./Author.js'),
+  Publisher: require('./Publisher.js')
 };
 ```
 
@@ -113,9 +113,9 @@ In the end this means that when you require `./models` in `server.js` you get ba
 **What's a seed-file, you ask?**
 > A seed file is a file used to load pre-made data into our database.  It lets us start up our app without having to key in starter data each time.
 
-2. Try running `node seed.js` in your terminal. If you're not seeing `created X books`, then something might be going wrong in your `book.js` file.  
+2. Try running `node seed.js` in your terminal. If you're not seeing `created X books`, then something might be going wrong in your `Book.js` file.  
 
-  Here's an example of what your `book.js` could look like:
+  Here's an example of what your `Book.js` could look like:
 
   ```js
   // entire book.js so far
