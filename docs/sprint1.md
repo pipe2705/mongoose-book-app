@@ -93,10 +93,7 @@ Inside `index.js` we require each of the other files and export it as one object
 
 ```javascript
 // models/index.js
-var mongoose = require("mongoose");
-// the mongoose.connect line will only happen once in your code for each project
-mongoose.connect("mongodb://localhost:27017/book-app");   
-
+// at the end of the file add..
 module.exports = {
   Book: require('./book.js'),
   Author: require('./author.js'),
@@ -165,17 +162,17 @@ Next we'll start to use our new model in `server.js`.
 
 1. Open `server.js`.  
 
-2. Add the correct `require` statement to `server.js` to import your models module:  `const db = require('./models')`.  This should go near the top as part of the "SETUP and CONFIGURATION".
+2. Add the correct `require` statement to `server.js` to import your models module:  `const db = require('./models')`.  This should go near the top as part of the "SETUP".
 
-3. Delete the hard-coded books array.  We'll start to replace each route with the correct code to use the database instead.  From now on, when we want to get to a book, we'll use mongoose methods and access `db.Books`.
+3. Delete the hard-coded books array.  We'll start to replace each route with the correct code to use the database instead.  From now on, when we want to get to a book, we'll use mongoose methods and access `db.Book`.
 
 4. Find the books index route and replace it with the following code:
 
   ```js
   // server.js
-  app.get('/api/books', function (req, res) {
+  app.get('/api/books', (req, res) => {
     // send all books as JSON response
-    db.Book.find(function(err, books){
+    db.Book.find((err, books)=>{
       if (err) {
         console.log("index error: " + err);
         res.sendStatus(500);
