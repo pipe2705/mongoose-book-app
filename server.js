@@ -1,17 +1,11 @@
-// server.js
-// SERVER-SIDE JAVASCRIPT
-
-
-/////////////////////////////
-//  SETUP and CONFIGURATION
-/////////////////////////////
-
 //require express in our app
-const express = require('express'),
-  bodyParser = require('body-parser');
+const express = require('express');
+const bodyParser = require('body-parser');
 
 // generate a new express app and call it 'app'
 const app = express();
+
+//---------------------------------MIDDLEWARE
 
 // serve static files in public
 app.use(express.static('public'));
@@ -19,11 +13,10 @@ app.use(express.static('public'));
 // body parser config to accept our datatypes
 app.use(bodyParser.urlencoded({ extended: true }));
 
+//-------------------------------CONFIGURATION VARIABLES
+const PORT = process.env.PORT || 3000;
 
-
-////////////////////
-//  DATA
-///////////////////
+//----------------------------- TEMP DATA
 
 const books = [
   {
@@ -52,33 +45,22 @@ const books = [
 
 let newBookUUID = 18;
 
-
-
-
-
-
-
-////////////////////
-//  ROUTES
-///////////////////
-
-
-
+// ----------------------------ROUTES
 
 // define a root route: localhost:3000/
-app.get('/', function (req, res) {
+app.get('/',  (req, res) => {
   res.sendFile('views/index.html' , { root : __dirname});
 });
 
 // get all books
-app.get('/api/books', function (req, res) {
+app.get('/api/books',  (req, res) => {
   // send all books as JSON response
   console.log('books index');
   res.json(books);
 });
 
 // get one book
-app.get('/api/books/:id', function (req, res) {
+app.get('/api/books/:id',  (req, res) => {
   // find one book by its id
   console.log('books show', req.params);
   for(let i=0; i < books.length; i++) {
@@ -90,7 +72,7 @@ app.get('/api/books/:id', function (req, res) {
 });
 
 // create new book
-app.post('/api/books', function (req, res) {
+app.post('/api/books',  (req, res) => {
   // create new book with form data (`req.body`)
   console.log('books create', req.body);
   const newBook = req.body;
@@ -100,12 +82,12 @@ app.post('/api/books', function (req, res) {
 });
 
 // update book
-app.put('/api/books/:id', function(req,res){
+app.put('/api/books/:id', (req,res) => {
 // get book id from url params (`req.params`)
   console.log('books update', req.params);
   const bookId = req.params.id;
   // find the index of the book we want to remove
-  const updateBookIndex = books.findIndex(function(element, index) {
+  const updateBookIndex = books.findIndex((element, index) => {
     return (element._id === parseInt(req.params.id)); //params are strings
   });
   console.log('updating book with index', deleteBookIndex);
@@ -115,12 +97,12 @@ app.put('/api/books/:id', function(req,res){
 });
 
 // delete book
-app.delete('/api/books/:id', function (req, res) {
+app.delete('/api/books/:id',  (req, res) => {
   // get book id from url params (`req.params`)
   console.log('books delete', req.params);
   const bookId = req.params.id;
   // find the index of the book we want to remove
-  const deleteBookIndex = books.findIndex(function(element, index) {
+  const deleteBookIndex = books.findIndex((element, index) => {
     return (element._id === parseInt(req.params.id)); //params are strings
   });
   console.log('deleting book with index', deleteBookIndex);
@@ -132,5 +114,5 @@ app.delete('/api/books/:id', function (req, res) {
 
 
 
-
-app.listen(process.env.PORT || 3000, () => console.log('Book app listening at http://localhost:3000/'));
+// Start Server
+app.listen(PORT, () => console.log(`Book app listening at http://localhost:${PORT}/`));
