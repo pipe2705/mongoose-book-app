@@ -14,7 +14,9 @@ Fork this repo & push work to your remote fork.
 
 In this lab you'll build a full stack javascript app incrementally. By the end of the lab you should be able to create new books and save them, delete books, modify existing books, and retrieve books from the database.
 
-# Sprint 1 - mongoDB & mongoose
+<hr>
+
+# Instructions
 
 ## 0. Set up your app
 
