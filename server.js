@@ -36,9 +36,9 @@ app.get("/api/books", (req, res) => {
       console.log("index error: " + err);
       res.sendStatus(500);
     }
+    res.json(books);
   });
   console.log("books index");
-  res.json(books);
 });
 
 // get one book
