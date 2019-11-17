@@ -1,13 +1,14 @@
 // This file allows us to seed our application with data
 // simply run: `node seed.js` from the root of this project folder.
 
-const db = require('./models');
+const db = require("./models");
 
 const books_list = [
   {
     title: "To Kill a Mockingbird",
     author: "Harper Lee",
-    image: "https://s3-us-west-2.amazonaws.com/sandboxapi/to_kill_a_mockingbird.jpg",
+    image:
+      "https://s3-us-west-2.amazonaws.com/sandboxapi/to_kill_a_mockingbird.jpg",
     releaseDate: "July 11, 1960"
   },
   {
@@ -25,7 +26,8 @@ const books_list = [
   {
     title: "Around the World in 80 Days",
     author: "Jules Verne",
-    image: "https://s3-us-west-2.amazonaws.com/sandboxapi/around_the_world_in_80_days.jpg",
+    image:
+      "https://s3-us-west-2.amazonaws.com/sandboxapi/around_the_world_in_80_days.jpg",
     releaseDate: "January 30, 1873"
   },
   {
@@ -37,7 +39,8 @@ const books_list = [
   {
     title: "The Four Hour Workweek",
     author: "Tim Ferriss",
-    image: "https://s3-us-west-2.amazonaws.com/sandboxapi/four_hour_work_week.jpg",
+    image:
+      "https://s3-us-west-2.amazonaws.com/sandboxapi/four_hour_work_week.jpg",
     releaseDate: "April 1, 2007"
   },
   {
@@ -55,15 +58,17 @@ const books_list = [
 ];
 
 // remove all records that match {} -- which means remove ALL records
-db.Book.deleteMany({}, function(err, books){
-  if(err) {
-    console.log('Error occurred in remove', err);
+db.Book.deleteMany({}, function(err, books) {
+  if (err) {
+    console.log("Error occurred in remove", err);
   } else {
-    console.log('removed all books');
+    console.log("removed all books");
 
-    // create new records based on the array books_list
-    db.Book.create(books_list, function(err, books){
-      if (err) { return console.log('err', err); }
+    //create new records based on the array books_list
+    db.Book.create(books_list, (err, books) => {
+      if (err) {
+        return console.log("err", err);
+      }
       console.log("created", books.length, "books");
       process.exit();
     });
