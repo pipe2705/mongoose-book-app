@@ -7,7 +7,6 @@ let db = require("./models");
 const app = express();
 
 //---------------------------------MIDDLEWARE
-
 // serve static files in public
 app.use(express.static("public"));
 
@@ -77,7 +76,6 @@ app.put("/api/books/:id", (req, res) => {
   books.splice(updateBookIndex, 1, req.params);
   res.json(req.params);
 });
-
 // delete book
 app.delete("/api/books/:id", (req, res) => {
   // get book id from url params (`req.params`)
@@ -92,7 +90,6 @@ app.delete("/api/books/:id", (req, res) => {
   books.splice(deleteBookIndex, 1);
   res.json(bookToDelete);
 });
-
 // Start Server
 app.listen(PORT, () =>
   console.log(`Book app listening at http://localhost:${PORT}/`)
