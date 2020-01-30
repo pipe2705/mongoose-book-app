@@ -90,6 +90,7 @@ app.delete("/api/books/:id", (req, res) => {
   books.splice(deleteBookIndex, 1);
   res.json(bookToDelete);
 });
+
 // Start Server
 app.listen(PORT, () =>
   console.log(`Book app listening at http://localhost:${PORT}/`)
